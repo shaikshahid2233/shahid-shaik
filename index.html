@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daimond</title>
+</head>
+<body>
+    <script>
+        let n = 5;
+        let string = " ";
+        //Upside pyrmid
+        for (let i = 1; i <= n; i++ ){
+            //printing the spaces 
+            for (let j = 1; j > i; j--){
+                string +=" ";
+            
+            }
+            //printing star
+            for (let k = 0; k < i  * 2 - 1; k++){
+                string +="*";
+            }
+            string +="\n"
+        }
+        //downside pyramind
+        for(let i = 1; i <=n - 1; i++){
+            //printing spaces
+            for(let j = 0; j < i; j ++){
+                string += " ";
+            }
+            //printing star
+            for (let k = (n - i)*2 - 1; k > 0; k--){
+                string +="*";
+            }
+            string += "\n"; 
+        }
+        console.log(string)
+    </script>
+</body>
+</html>
