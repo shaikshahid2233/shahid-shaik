@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5rrE81ERDxcAetkMZL49VT2BDbqfwXiQspA&usqp=CAU);
+            background-position: center;
+            background-size: cover;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: 40px;
+        }
+        .regform{
+            width: 500px;
+            background-color: lightgreen;
+            color: #ffff;
+            
+            text-align: center;
+            border-radius: 15px 15px 0px 0px;
+            margin: auto;
+
+        }
+        .main{
+            background-color: lightcyan;
+            width: 500px;
+            margin: auto;
+        }
+        form{
+            padding: 10px;
+        }
+        input{
+            position: relative;
+            color: #e5e5e5;
+            text-transform: capitalize;
+            font-size: 20px;
+            line-height: 20px;
+            border-radius: 10px;
+        }
+        select{
+           position: relative;
+            color: #e5e5e5;
+            text-transform: capitalize;
+            font-size: 20px;
+            line-height: 20px;
+            border-radius: 10px; 
+        }
+        textarea{
+            position: relative;
+            text-transform: capitalize;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        button{
+            background-color: rgb(15, 235, 15);
+            display: block;
+            margin: 20px 0px 0px 20px;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid #366437;
+            padding: 20px 110px;
+            color: #ffff;
+            cursor: pointer;
+            transition: 0,25px;
+        }
+    
+        
+
+    </style>
+</head>
+<body>
+        <div class="regform"><h1>free code camp</h1>
+           <h1> Survey Form </h1>
+         </div>
+         <br>
+         <div class="regform">
+            <p>Thank you for taking the time to help us <br>improve the platform</p>
+         </div>
+    </div>
+    <div class="main">
+        <form>
+        <div>
+        <label class="name">Name</h4>
+        </label><br>
+        <input 
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Enter your name"
+        required 
+        />
+        </div>
+        <div>
+        <label class="name">Email</label><br>
+        <input 
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Enter Your Email"
+        required/>
+        </div>
+        <div>
+            <label class="name">Age<span class="optical">(Optical)
+
+            </span></label><br>
+            <input 
+            id= "number"
+            type="number"
+            name="age"
+            min="9"
+            max="99"
+            placeholder="age">
+        </div>
+        <div>
+            <p>Which ootion best describes your current role?</p>
+            <select class="name" name="role" required>
+                <option disable selectd value >select current role</option>
+                <option value="student">student</option>
+                <option value="job">job</option>
+                <option value="learner">learner</option>
+                <option value="preferNo">prefer not to say</option>
+                <option value="other">other</option>
+            </select>
+        </div>
+        <div>
+            <p class="name">would you recommend freecodecamp to a friend?</p>
+            <label for="radio">
+                <input
+                 type="radio"
+                 value="definitely"
+                 />
+                 Definitely
+            </label><br>
+            <label for="radio">
+                <input 
+                type="radio"
+                value="maybe"
+                />
+                Maybe
+            </label><br>
+            <label for="radio">
+                <input 
+                type="radio"
+                value="notsure"
+                />
+                Notsure
+            </label>
+
+        </div>
+        <div>
+            <p class="name">What is your favorite feature of freecodecamp?</p>
+            <select name="mostlike" id="most_like" required>
+                <option disable seleted value>select an option</option>
+                <option value="challenges">challenges</option>
+                <option value="projects">projects</option>
+                <option value="community">community</option>
+                <option value="Open Source">Open source</option>
+            </select>
+            <div>
+                <p class="name">What wouldf you like to see improved ?<span>(check allthat apply)</span></p>
+                <label for="checkbox">
+                    <input
+                     type="checkbox"
+                     name="prefer"
+                     value="front-end projects">
+                     Front-end projects
+                </label><br>
+                <label for="checkbox">
+                    <input 
+                    type="checkbox"
+                    name="prefer"
+                    value="back-end projects"
+                    >
+                    Back-end projects
+                </label><br>
+                <label for="checkbox">
+                    <input
+                     type="checkbox"
+                     name="prefer"
+                     value="data visualization"
+                     >
+                     Data visualization
+                </label><br>
+                <label for="checkbox">
+                    <input
+                     type="checkbox"
+                     name="prefer"
+                     value="Challenges"
+                    >
+                    Challenges
+                </label><br>
+                <label for="checkbox">
+                    <input
+                     type="checkbox"
+                     name="prefar"
+                     value="open sorce community">
+                     Open sorce community
+                </label><br>
+                <label for="checkbox">
+                    <input
+                     type="checkbox"
+                     value="Gitter help rooms"
+                     name="prefar"
+                    >
+                    Gitter help rooms
+                </label><br>
+                <label for="chekbox">
+                    <input
+                     type="checkbox"
+                     value="videos"
+                     name="prefar"
+                    >
+                    Videos
+                </label><br>
+                <label for="checkbox">
+                    <input 
+                    type="checkbox"
+                    value="City Meetups"
+                    name="prefar"
+                    >
+                    City Meetups
+                </label><br>
+                <label for="Checkbox">
+                    <input
+                     type="checkbox"
+                     value="Wiki"
+                     name="prefar"
+                     >
+                     Wiki
+                </label><br>
+                <label for="checkbox">
+                    <input 
+                    type="checkbox"
+                    value="forum"
+                    name="prefar"
+                    >
+                    Forum
+                </label><br>
+                <label for="checkbox">
+                    <input 
+                    type="checkbox"
+                    value="Additional courses"
+                    name="prefar"
+                    >
+                    Additional courses
+                </label>
+            </div>
+            <div>
+                <P class="name">Any comments or sugestions?</P>
+                <textarea name="Comment" 
+                id="comments" 
+                cols="30"
+                 rows="5">
+                </textarea>
+            </div>
+            <div class="submit-button">
+                <button type="submet" id="submet"
+                class="submet-button">submet</button>
+            </div>
+
+        </div>
+
+
+        </form>
+    </div>
+</body>
+</html>
