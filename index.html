@@ -4,38 +4,136 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daimond</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding-top: 10%;
+        }
+        h1{
+            font-weight: bold;
+        }
+        label{
+            margin-bottom: 20px;
+        }
+        #tasklist{
+            list-style-type: upper-roman;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            padding: 1rem;
+            font-size: 1.2rem;
+        }
+        .task{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 2px solid lightblue;
+        }
+        .task span {
+            flex-grow: 1 ;
+        }
+        .task button {
+            background-color: aqua;
+            color: blue;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+        .tudo{
+            margin-left: 10%;
+            margin-right: 10%;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            text-align: center;
+            box-shadow: rgba(0,0,0,0.35)0px 5px 15px;
+        }
+        label button{
+            font-size: 0.8rem;
+            background-color: blue;
+            color: green;
+            border: none;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+        .label-tudo{
+            width: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 1rem ;
+
+        }
+    </style>
+    <title>Ass tudo</title>
 </head>
 <body>
+    <h1>to-do list</h1>
+    <div class="tudo">
+        <label>
+            <div class="label-tudo">
+                <input type="text" id="taskInput" placeholder="tudo a list">
+                <button type="button" onclick="addTask()"> Add Tast</button>
+            </div>
+        </label>
+        <ul id="tasklist"></ul>
+    </div>
     <script>
-        let n = 5;
-        let string = " ";
-        //Upside pyrmid
-        for (let i = 1; i <= n; i++ ){
-            //printing the spaces 
-            for (let j = 1; j > i; j--){
-                string +=" ";
-            
-            }
-            //printing star
-            for (let k = 0; k < i  * 2 - 1; k++){
-                string +="*";
-            }
-            string +="\n"
+        function addTask() {
+            var taskinput = document.getElementById("taskinput");
+            var task = taskInput.value;
+            // switch(task){
+            //    case taskinput=0:
+            //     addtask();
+            //     break;
+            // }
+            // create a new li element
+            var li = document.createElement("li");
+            li.className = "task";
+            //create a new span element
+            var span = document.createElement("span");
+            span.innerHTML = "task";
+            //create a new delete button element
+            var deleteBtn = document.createElement("button");
+            deleteBtn.innerHTML = "Delete";
+            deleteBtn.onclick = deleteTask;
+            //create a new edit button element
+            var editbtn = document.createElement("button");
+            deleteBtn.innerHTML ="Edit";
+            deleteBtn.onclick = editTask;
+            //add the task and delete button to the li element
+            li.appendChild(span);
+            li.appendChild(editbtn);
+            li.appendChild(deleteBtn)
+            // clear the task input
+            taskInput.value = "";
+
         }
-        //downside pyramind
-        for(let i = 1; i <=n - 1; i++){
-            //printing spaces
-            for(let j = 0; j < i; j ++){
-                string += " ";
-            }
-            //printing star
-            for (let k = (n - i)*2 - 1; k > 0; k--){
-                string +="*";
-            }
-            string += "\n"; 
+        function deleteTask(e){
+            var task = e.target.parentElement;
+            var taskList =  task.parentElement;
+            taskList.removechild(task);
         }
-        console.log(string)
+        function editTask(e){
+            var task = e.target.parentElement;
+            var input = document.createElement("input");
+            input.type = "text";
+            input.value = task.fristChild.innerHTML;
+            task.removechild(input, task.fristChild);
+            e.target.innerHTML = "save";
+            e.target.onclick = saveTask;
+        }
+        function saveTask(e) {
+            var task = e.target.parentElement;
+            var input = task.fristChild;
+            var span = document.createElement("span")
+            span.innerHTML = input.value;
+            task.replaceChild(span, input);
+            e.target.innerHTML = "Edit";
+            e.target.onclick = editTask;
+        }
+
     </script>
 </body>
-</html>
+</html> 
