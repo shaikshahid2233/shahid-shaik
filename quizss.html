@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz App</title>
+    <style>
+       body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 60px;
+    background-color: lightblue;
+    color: white;
+}
+header h1 {
+    margin: 0;
+}
+main{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    height: calc(100vh - 60px);
+}
+#dashbord, #quiz-container, #score-board {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 3px 9px rgba(0,0,0,0.1);
+    width: 500px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,td {
+    border: 1px solid lightgray;
+    padding: 9px;
+    text-align: left;
+}
+th{
+    background-color: lightgray;
+}
+#start-quiz-btn {
+    background-color: blue;
+    margin-top: 1rem;
+    color: white;
+    border:none;
+    padding:  1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.username-da {
+    font-size: 1.3rem;
+}
+#dashbord{
+    text-align: center;
+}
+#username{
+    margin: 1rem;
+    padding: 1rem;
+}
+.user-form-dashbord{
+    display: flex;
+    flex-direction: column;
+    gap :1rem;
+    text-align: center;
+}
+ img{
+    height: 100px;
+}
+.category{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.btn{
+    border: 2px solid black;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+.btn:hover{
+    background-color: gray;
+    color: white;
+}
+ 
+    </style>
+</head>
+<body>
+    <div id="quiz">
+        <header>
+            <h1>Quiz app</h1>
+        </header>
+        <main>
+            <div id="dashbord">
+                <img src="textbook.png" alt="no img">
+                <h2>Hello user</h2>
+                <span>Select category you wont stat</span>
+                <div class="category">
+                    <input type="radio" name="question" id="">Programing
+                    <input type="radio" name="question" id="">Politics
+                    <input type="radio" name="question" id="">Sports
+                    <input type="radio" name="question" id="">Genaral Knowladge
+                </div>
+                <br>
+                <span>Enter Your Name to continue The Quiz</span>
+                <form class="user-form-dashbord">
+                    <div class="username-dashbord">
+                        <input type="text" id="username" name="usernmae" placeholder="Enter your name......">
+                    </div>
+                    <button id="start-quiz-btn">start Quiz</button>
+                </form>
+                <br>
+            </div>
+            <div id="quiz-container"style="display:none ;">
+                <h2>Ouiz</h2>
+                <form id="quiz-form">
+                    <div id="question"></div>
+                    <div id="options"></div>
+                    <button id="next-question-btn" disabled>Next Question</button>
+                </form>
+            </div>
+
+            <div id="score-board" style="display:none">
+                <h2>score-bord</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scoreBoardBody"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <Script>
+        const app = document.querySelector("#app");
+const dashbord = document.querySelector("#dashbord");
+const quizContainer = document.querySelector("#quiz-container");
+const scoreBoard = document.querySelector("#score-board");
+const usernameInput = document.querySelector("#username");
+const startQuizBtn = document.querySelector("#start-quiz-btn");
+const nextQuestionBtn = document.querySelector("#next-question-btn");
+const quizForm = document.querySelector("#quiz-form");
+const question = document.querySelector("#question");
+const options = document.querySelector("#options");
+const scoreBoardBody = document.querySelector("score-board-body");
+
+let currentQuestion = 0 ;
+let score = 0;
+let questions = [
+    {
+        text: "Who is the Caption of indian Cricket ?",
+        options: [
+            "virat kholi",
+            "Rohit Sharam",
+            "KL Rahul",
+            "Hardik Pandya",
+        ],
+        answer: 1
+    },
+    {
+        text: "Who is the present NO 1 bowler in cricket?",
+        options: [
+            "Mohammad Siraj",
+            "jaspit Bumra",
+            "Mohammad Shami",
+            "Bhuwanwshwar Kumar",
+        ],
+        answer:0
+    },
+    {
+        text:"Most Runs in Cricket playing History?",
+        options: [
+            "ricky Ponting",
+            "bren lara",
+            "hasim Amla",
+            "sachin tendulkar",
+        ],
+        answer:3
+    },
+    {
+        text:"kiron pollad is which country player?",
+        options: [
+            "indian",
+            "West Indies",
+            "Srilanka",
+            "England",
+        ],
+        answer:1
+    }
+
+];
+startQuizBtn.addEventListener("click",function(event){
+    event.preventDefault();
+    dashbord.style.display = "none";
+    quizContainer.style.display = "block";
+    loadQuestion();
+});
+
+nextQuestionBtn.addEventListener("click",function(event){
+    event.preventDefault();
+    let selectedOption = -1;
+    for (let i=0; i < quizForm.elements.lenght - 1; i++){
+        if (quizForm.elements[i].checked){
+            selectedOption = i ;
+            break;
+        }
+    
+    }
+    if (selectedOption === questions[currentQuestion].answer){
+        score++
+    }
+    currentQuestion++;
+    if (currentQuestion === questions.length){
+        quizContainer.style.display = "none";
+        scoreBoard.style.display = "block";
+        updateScoreBoard();
+    } else {
+        loadQuestion();
+    }
+});
+
+function loadQuestion() {
+    question.textContent = questions[currentQuestion].text;
+    options.innerHTML = "";
+    for (let i = 0; i < questions[currentQuestion].options.length; i++) {
+        options.innerHTML +=`
+        <div>
+        <input type="radio" id="option-${i}" name="option" value="${i}">
+        <label for="option-${i}">${questions[currentQuestion].options[i]}</label>}
+        </div>
+        `;
+    }
+    nextQuestionBtn.disabled = false;
+}
+
+function updateScoreBoard () {
+    scoreBoardBody.innerHTML = "";
+    let username = usernameInput.value || "anonymous";
+    scoreBoardBody.innerHTML +=`
+    <tr>
+      <td> ${username}</td>
+      <td>${score}/${questions.length}</td>
+    <tr>
+    `;
+}
+
+
+
+    </Script>
+</body>
+</html>
