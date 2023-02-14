@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>quiz App</title>
+</head>
+<body>
+    <div id="quiz">
+        <header>
+            <h1>Quiz app</h1>
+        </header>
+        <main>
+            <div id="dashbord">
+                <img src="textbook.png" alt="no img">
+                <h2>Hello user</h2>
+                <span>Select category you wont stat</span>
+                <div class="category">
+                    <input type="radio" name="question" id="">Programing
+                    <input type="radio" name="question" id="">Politics
+                    <input type="radio" name="question" id="">Sports
+                    <input type="radio" name="question" id="">Genaral Knowladge
+                </div>
+                <br>
+                <span>Enter Your Name to continue The Quiz</span>
+                <form class="user-form-dashbord">
+                    <div class="username-dashbord">
+                        <input type="text" id="username" name="usernmae" placeholder="Enter your name......">
+                    </div>
+                    <button id="start-quiz-btn">start Quiz</button>
+                </form>
+                <br>
+            </div>
+            <div id="quiz-container"style="display:none ;">
+                <h2>Ouiz</h2>
+                <form id="quiz-form">
+                    <div id="question"></div>
+                    <div id="options"></div>
+                    <button id="next-question-btn" disabled>Next Question</button>
+                </form>
+            </div>
+
+            <div id="score-board" style="display:none">
+                <h2>score-bord</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scoreBoardBody"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
