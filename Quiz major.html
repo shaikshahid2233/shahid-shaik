@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:lightcoral;
+    font-family: sans-serif;
+    
+}
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    
+}
+
+#box {
+    width: 40%;
+    padding: 15px;
+    box-shadow: 0px 0px 5px gray;
+    background-color: white;
+    border-radius: 5px;
+}
+.row{
+    width: 100%;
+    margin: 2rem;
+    margin-left: 0;
+}
+.btn {
+    width: 100%;
+    padding: 5px;
+    background-color:lightcoral ;
+    font-size: 20pt;
+    color: aliceblue;
+    border: none;
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="box">
+            <h2 id ="quesBox">1)This is the Dumy Question</h2>
+            <div class="row">
+                <input class="option" id="option1" type="radio" value="a" name="option"/>
+                <label for="option1">option 1</label>
+            </div>
+            <div class="row">
+                <input class="option" id="option2" type="radio" value="b" name="option"/>
+                <label for="option2">option 2</label>
+            </div>
+            <div class="row">
+                <input class="option" id="option3" type="radio" value="c" name="option"/>
+                <label for="option3">option 3</label>
+            </div>
+            <div class="row">
+                <input class="option" id="option4" type="radio" value="d" name="option"/>
+                <label for="option4">option 4</label>
+            </div>
+            <button class="btn" onclick="sumbmitQuiz()">
+                submit
+            </button>    
+
+            
+        </div>
+    </div>
+    <script>
+        const questions = [
+    {
+        'que': 'Which of the following is a markup language ?',
+        'a':'HTML',
+        'b':'CSS',
+        'c':"Javascript",
+        'd':'nodejs',
+        'correct': 'a'
+    },
+    {
+        'que': 'What year java Script lunched ?',
+        'a':'1996',
+        'b':'1995',
+        'c':"1994",
+        'd':'1993',
+        'correct': 'b'
+    },
+    {
+        'que': 'short cut of CasCading Style Sheet ?',
+        'a':'HTML',
+        'b':'CSS',
+        'c':"Javascript",
+        'd':'nodejs',
+        'correct': 'b'
+    },
+    {
+        'que': 'JS means ?',
+        'a':'HTML',
+        'b':'CSS',
+        'c':"Javascript",
+        'd':'nodejs',
+        'correct': 'c'
+    }
+
+]
+let index = 0;
+let total = questions.length;
+let right = 0;
+let wrong = 0;
+const quesBox = document.getElementById("quesBox")
+const optionInputs = document.querySelectorAll('.option')
+const loadQuestion = () => {
+    if(index === total){
+        return endQuiz()
+    }
+    reset();
+     const data = questions [index]
+     console.log(data)
+     quesBox.innerHTML = `${index+1})${data.que}`;
+     optionInputs[0].nextElementSibling.innerHTML = data.a;
+     optionInputs[1].nextElementSibling.innerHTML = data.b;
+     optionInputs[2].nextElementSibling.innerHTML = data.c; 
+     optionInputs[3].nextElementSibling.innerHTML = data.d;
+}
+const sumbmitQuiz = () => {
+    const data = questions [index]
+     const ans = getAnswer()
+     if (ans === data.correct){
+          right++;
+     }else{
+        wrong++;
+     }
+     index++;
+     loadQuestion();
+     return;
+}
+const getAnswer = () => {
+    optionInputs.forEach(
+        (input) => {
+            if(input.checked){
+                return input.value;
+            }
+        }
+    )
+}
+const reset = () => {
+    optionInputs.forEach(
+        (input) => {
+            input.checked = false;
+        }
+    )
+           
+}
+const endQuiz = () =>{
+    document.getElementById("box").innerHTML = `
+    <h3> Thank you for playing Quiz </h3>
+    <h2> ${right}/${total} are correct </h2>`
+}
+// inital call
+loadQuestion();
+    </script>
+</body>
+</html>
